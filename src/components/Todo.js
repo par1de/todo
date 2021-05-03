@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   IconButton,
@@ -21,11 +21,35 @@ import {
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import EditTask from "./EditTask";
 
-const Todo = ({ desc, task, handleDelete, handleEdit }) => {
+const Todo = ({ desc, task, handleDelete, handleEdit, handleCreate }) => {
+  const [value, setValue] = useState("");
+  const [tag, setTag] = useState("");
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = React.useRef()
   const finalRef = React.useRef()
+
+  // TODO verificare che l'edit faccia confusione con l'id
+  const EditTask = () => {
+    handleDelete(task.id);
+    handleSubmit();
+  }
+
+  const handleInputChangeT = (e) => {
+    let input = e.target.value;
+    setValue(input);
+  };
+
+  const handleSelectChangeT = (e) => {
+    let select = e.target.value;
+    setTag(select);
+  };
+
+  const handleSubmit = (e) => {
+    handleCreate(value, tag);
+    setValue("");
+  };
 
   return (
     <Flex
@@ -67,13 +91,17 @@ const Todo = ({ desc, task, handleDelete, handleEdit }) => {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Nome Task</FormLabel>
-              <Input ref={initialRef} placeholder="Nuovo nome del task..." />
+              <Input
+                ref={initialRef}
+                placeholder="Nuovo nome del task..."
+                onChange={handleInputChangeT}
+              />
             </FormControl>
             <FormControl>
               <Select
                 mt={3}
                 variant="filled"
-                // onChange={handleSelectChange}
+                onChange={handleSelectChangeT}
                 placeholder="Priorità"
               >
                 <option value="dodgerblue">Bassa</option>
@@ -85,7 +113,7 @@ const Todo = ({ desc, task, handleDelete, handleEdit }) => {
           </ModalBody>
           <ModalFooter>
             <Button
-              onClick={() => handleDelete(task.id)}
+              onClick={EditTask}
               colorScheme="blue" mr={3}
             >
               Save

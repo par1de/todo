@@ -81,8 +81,16 @@ function App() {
     <ColorModeSwitcher />
     <Flex h="100%" className="App" direction="column">
       <Header />
-      <Form handleCreate={handleCreate} handleDeleteAll={handleDeleteAll} />
-      <TodoList tasks={tasks} handleDelete={handleDelete} handleEdit={handleEdit} />
+      <Form 
+        handleCreate={handleCreate}
+        handleDeleteAll={handleDeleteAll}
+      />
+      <TodoList 
+        tasks={tasks}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+        handleCreate={handleCreate}
+      />
     </Flex>
     <Footer />
     </>

@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react";
 import Todo from "./Todo";
 
-const TodoList = ({ tasks, handleDelete, handleEdit }) => {
+const TodoList = ({ tasks, handleDelete, handleEdit, handleCreate }) => {
   return (
     <>
       {tasks !== undefined && tasks.length === 0 && (
@@ -43,6 +43,7 @@ const TodoList = ({ tasks, handleDelete, handleEdit }) => {
                 task={task}
                 handleDelete={handleDelete}
                 handleEdit={handleEdit}
+                handleCreate={handleCreate}
               />
             );
           })}
