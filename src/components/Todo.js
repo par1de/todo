@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import {
   Text,
   IconButton,
@@ -20,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import EditTask from "./EditTask";
+import Form from './Form';
 
 const Todo = ({ desc, task, handleDelete, handleEdit, handleCreate }) => {
   const [value, setValue] = useState("");
@@ -30,10 +32,11 @@ const Todo = ({ desc, task, handleDelete, handleEdit, handleCreate }) => {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
-  // TODO verificare che l'edit faccia confusione con l'id
+  // TODO verificare che l'edit non faccia confusione con l'id
   const EditTask = () => {
-    handleDelete(task.id);
     handleSubmit();
+    handleDelete(task.id);
+    
   }
 
   const handleInputChangeT = (e) => {
