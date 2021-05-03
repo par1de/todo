@@ -1,41 +1,92 @@
-import React from 'react';
+import Header from "./components/Header";
+import Form from "./components/Form";
+import TodoList from "./components/TodoList";
+import { useState } from "react";
+import { v1 as v1id } from "uuid";
+import Footer from "./components/Footer";
 import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
+  Alert,
+  Flex,
+  useToast,
+ } from "@chakra-ui/react";
+
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const toast = useToast();
+
+  const handleCreate = (value, tag) => {
+    if (value !== "") {
+      setTasks([...tasks, { id: v1id(), value, tag }]);
+      toast({
+        title: "Success",
+        description: "Task creato con successo!",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Inserisci qualcosa nel box!",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleEdit = (id) => {
+    return;
+  }
+
+  const handleDelete = (id) => {
+    setTasks(
+      tasks.filter((task) => {
+        return task.id !== id;
+      })
+    );
+    toast({     
+      title: "Success",
+      description: "Task eliminato con successo!",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
+  const handleDeleteAll = () => {
+    if (tasks.length !== 0) {
+      setTasks([]);
+      toast({
+        title: "Success",
+        description: "Tasks eliminato con successo!",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Non ci sono Task da eliminare!",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <>
+    <ColorModeSwitcher />
+    <Flex h="100%" className="App" direction="column">
+      <Header />
+      <Form handleCreate={handleCreate} handleDeleteAll={handleDeleteAll} />
+      <TodoList tasks={tasks} handleDelete={handleDelete} handleEdit={handleEdit} />
+    </Flex>
+    <Footer />
+    </>
   );
 }
 
