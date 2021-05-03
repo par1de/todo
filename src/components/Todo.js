@@ -4,7 +4,8 @@ import {
   Flex,
   Spacer
 } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
+import EditTask from "./EditTask";
 
 const Todo = ({ desc, task, handleDelete, handleEdit }) => {
   return (
@@ -24,11 +25,7 @@ const Todo = ({ desc, task, handleDelete, handleEdit }) => {
         {desc}
       </Text>
       <Spacer />
-      <IconButton
-        mr={1}
-        icon={<EditIcon />}
-        onClick={() => handleEdit(task.id)}
-      />
+      <EditTask id={task.id} handleDelete={handleDelete} />
       <IconButton
         icon={<DeleteIcon />}
         onClick={() => handleDelete(task.id)}

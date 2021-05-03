@@ -5,11 +5,14 @@ import {
 } from "@chakra-ui/react";
 import Todo from "./Todo";
 
-const TodoList = ({ tasks, handleDelete }) => {
+const TodoList = ({ tasks, handleDelete, handleEdit }) => {
   return (
     <>
       {tasks !== undefined && tasks.length === 0 && (
-      <Flex position="center" direction="column" justify="center">
+      <Flex
+        align="center"
+        direction="column"
+      >
         <Heading
           fontSize={{ base: "1.3rem", md: "1.8rem" }}
         >
@@ -39,6 +42,7 @@ const TodoList = ({ tasks, handleDelete }) => {
                 tag={task.tag}
                 task={task}
                 handleDelete={handleDelete}
+                handleEdit={handleEdit}
               />
             );
           })}

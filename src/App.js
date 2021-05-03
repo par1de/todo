@@ -5,7 +5,6 @@ import { useState } from "react";
 import { v1 as v1id } from "uuid";
 import Footer from "./components/Footer";
 import {
-  Alert,
   Flex,
   useToast,
  } from "@chakra-ui/react";
