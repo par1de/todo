@@ -62,7 +62,10 @@ const EditTask = (id, handleDelete) => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={handleDelete} colorScheme="blue" mr={3}>
+            <Button
+              onClick={() => handleDelete(id)}
+              colorScheme="blue" mr={3}
+            >
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
