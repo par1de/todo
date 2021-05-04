@@ -22,7 +22,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import Todo from "./Todo";
 
 const TodoList = ({ tasks, handleDelete, handleCreate }) => {
   const [value, setValue] = useState("");
