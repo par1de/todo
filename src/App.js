@@ -36,10 +36,6 @@ function App() {
     }
   };
 
-  const handleEdit = (id) => {
-    return;
-  }
-
   const handleDelete = (id) => {
     setTasks(
       tasks.filter((task) => {
@@ -88,7 +84,6 @@ function App() {
       <TodoList 
         tasks={tasks}
         handleDelete={handleDelete}
-        handleEdit={handleEdit}
         handleCreate={handleCreate}
       />
     </Flex>
