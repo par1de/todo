@@ -31,7 +31,6 @@ const Form = ({ handleCreate, handleDeleteAll }) => {
     setValue("");
   };
 
-
   return (
     <Box
       display={{ lg: "flex" }}
@@ -76,7 +75,7 @@ const Form = ({ handleCreate, handleDeleteAll }) => {
           onClick={handleSubmit}
         >
           <AddIcon mr={1} mb={1}/>
-          Aggiungi Task
+          Add Task
         </Button>
         <Button
           color="white"
@@ -87,7 +86,7 @@ const Form = ({ handleCreate, handleDeleteAll }) => {
           onClick={handleDeleteAll}
         >
           <DeleteIcon mr={1} mb={1} />
-          Svuota Tutto
+          Empty All
         </Button>
       </HStack>
     </Box>

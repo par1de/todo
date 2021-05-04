@@ -39,7 +39,7 @@ const Header = () => {
 
       <Menu>
         <MenuButton
-          mt={1}
+          mt={2}
           fontSize='2rem'
           as={IconButton}
           aria-label="Options"

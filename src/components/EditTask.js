@@ -1,10 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
 import {
-  Text,
-  IconButton,
-  Flex,
-  Spacer,
   Button,
   Modal,
   ModalOverlay,
@@ -16,65 +11,27 @@ import {
   FormControl,
   FormLabel,
   Input,
+  IconButton,
   Select,
-  useDisclosure, 
+  useDisclosure,
 } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import EditTask from "./EditTask";
-import Form from './Form';
+import { EditIcon } from '@chakra-ui/icons';
 
-const Todo = ({ task, handleDelete, handleEdit, handleCreate }) => {
-  const [value, setValue] = useState("");
-  const [tag, setTag] = useState("");
-
+const EditTask = (id, handleDelete) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
-  const EditTask = (e) => {
-    handleSubmit();
-    
-  }
-
-  const handleInputChangeT = (e) => {
-    let input = e.target.value;
-    setValue(input);
-  };
-
-  const handleSelectChangeT = (e) => {
-    let select = e.target.value;
-    setTag(select);
-  };
-
-  const handleSubmit = (e) => {
-    handleCreate(value, tag);
-    setValue("");
-  };
-
   return (
-    <Flex
-      p={5}
-      shadow="lg"
-      borderWidth="1px"
-      flex="1"
-      borderRadius="2xl"
-      borderLeft="8px"
-      borderColor={task.tag}
-    >
-      <Text
-        mt={1}
-        fontSize={{ sm: "1.3rem", md: "1rem" }}
-      >
-        {task.value}
-      </Text>
-      <Spacer />
+    <>
       <IconButton
         onClick={onOpen}
         mr={1}
         icon={<EditIcon />}
       >
       </IconButton>
+
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -88,17 +45,13 @@ const Todo = ({ task, handleDelete, handleEdit, handleCreate }) => {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Nome Task</FormLabel>
-              <Input
-                ref={initialRef}
-                placeholder="Nuovo nome del task..."
-                onChange={handleInputChangeT}
-              />
+              <Input ref={initialRef} placeholder="Nuovo nome del task..." />
             </FormControl>
             <FormControl>
               <Select
                 mt={3}
                 variant="filled"
-                onChange={handleSelectChangeT}
+                // onChange={handleSelectChange}
                 placeholder="Priorità"
               >
                 <option value="dodgerblue">Bassa</option>
@@ -110,7 +63,7 @@ const Todo = ({ task, handleDelete, handleEdit, handleCreate }) => {
           </ModalBody>
           <ModalFooter>
             <Button
-              onClick={EditTask}
+              onClick={() => handleDelete(id)}
               colorScheme="blue" mr={3}
             >
               Save
@@ -119,13 +72,8 @@ const Todo = ({ task, handleDelete, handleEdit, handleCreate }) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-      <IconButton
-        icon={<DeleteIcon />}
-        onClick={() => handleDelete(task.id)}
-      />
-    </Flex>
+    </>
   );
 };
 
-export default Todo;
+export default EditTask;

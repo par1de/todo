@@ -5,7 +5,6 @@ import { useState } from "react";
 import { v1 as v1id } from "uuid";
 import Footer from "./components/Footer";
 import {
-  Alert,
   Flex,
   useToast,
  } from "@chakra-ui/react";
@@ -36,10 +35,6 @@ function App() {
       });
     }
   };
-
-  const handleEdit = (id) => {
-    return;
-  }
 
   const handleDelete = (id) => {
     setTasks(
@@ -82,8 +77,15 @@ function App() {
     <ColorModeSwitcher />
     <Flex h="100%" className="App" direction="column">
       <Header />
-      <Form handleCreate={handleCreate} handleDeleteAll={handleDeleteAll} />
-      <TodoList tasks={tasks} handleDelete={handleDelete} handleEdit={handleEdit} />
+      <Form 
+        handleCreate={handleCreate}
+        handleDeleteAll={handleDeleteAll}
+      />
+      <TodoList 
+        tasks={tasks}
+        handleDelete={handleDelete}
+        handleCreate={handleCreate}
+      />
     </Flex>
     <Footer />
     </>
