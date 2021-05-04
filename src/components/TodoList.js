@@ -135,7 +135,7 @@ const TodoList = ({ tasks, handleDelete, handleCreate }) => {
                   <ModalFooter>
                     <Button
                       onClick={() => EditTask(task.id)}
-                      colorScheme="blue" mr={3}
+                      colorScheme="teal" mr={3}
                     >
                       Save
                     </Button>
