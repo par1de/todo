@@ -23,7 +23,7 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import EditTask from "./EditTask";
 import Form from './Form';
 
-const Todo = ({ desc, task, handleDelete, handleEdit, handleCreate }) => {
+const Todo = ({ task, handleDelete, handleEdit, handleCreate }) => {
   const [value, setValue] = useState("");
   const [tag, setTag] = useState("");
 
@@ -32,10 +32,8 @@ const Todo = ({ desc, task, handleDelete, handleEdit, handleCreate }) => {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
-  // TODO verificare che l'edit non faccia confusione con l'id
-  const EditTask = () => {
+  const EditTask = (e) => {
     handleSubmit();
-    handleDelete(task.id);
     
   }
 
@@ -68,19 +66,15 @@ const Todo = ({ desc, task, handleDelete, handleEdit, handleCreate }) => {
         mt={1}
         fontSize={{ sm: "1.3rem", md: "1rem" }}
       >
-        {desc}
+        {task.value}
       </Text>
       <Spacer />
-      
-      {/* <EditTask id={task.id} handleDelete={handleDelete} /> */}
-
       <IconButton
         onClick={onOpen}
         mr={1}
         icon={<EditIcon />}
       >
       </IconButton>
-
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}

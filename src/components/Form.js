@@ -31,7 +31,6 @@ const Form = ({ handleCreate, handleDeleteAll }) => {
     setValue("");
   };
 
-
   return (
     <Box
       display={{ lg: "flex" }}
