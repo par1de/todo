@@ -32,17 +32,17 @@ const TodoList = ({ tasks, handleDelete, handleCreate }) => {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
-  const EditTask = (key) => {
-    handleDelete(key);
+  const EditTask = (id) => {
     handleSubmit();
+    handleDelete(id);
   }
 
-  const handleInputChangeT = (e) => {
+  const handleInputChange = (e) => {
     let input = e.target.value;
     setValue(input);
   };
 
-  const handleSelectChangeT = (e) => {
+  const handleSelectChange = (e) => {
     let select = e.target.value;
     setTag(select);
   };
@@ -115,14 +115,14 @@ const TodoList = ({ tasks, handleDelete, handleCreate }) => {
                       <Input
                         ref={initialRef}
                         placeholder="Nuovo nome del task..."
-                        onChange={handleInputChangeT}
+                        onChange={handleInputChange}
                       />
                     </FormControl>
                     <FormControl>
                       <Select
                         mt={3}
                         variant="filled"
-                        onChange={handleSelectChangeT}
+                        onChange={handleSelectChange}
                         placeholder="Priorità"
                       >
                         <option value="dodgerblue">Bassa</option>
